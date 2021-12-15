@@ -98,10 +98,12 @@ class HomeFragment() : Fragment() {
                         val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "")
                         val img: Bitmap? = decodeBase64(cleanImage)
                         imgPlant.setImageBitmap(img)
-
+                        if(!state.plant.code.isNotEmpty())
+                        {
+                            Toast.makeText(context, "No assigned plant yet! Please register your plant code", Toast.LENGTH_SHORT).show()
+                        }
                         if (state.plant.humidity == null || state.plant.humidity == 0) {
                             tv_humidity.text = "--"
-                            Toast.makeText(context, "No assigned plant yet! Please register your plant code", Toast.LENGTH_SHORT).show()
                         } else {
                             tv_humidity.text = state.plant.humidity.toString()
                         }
