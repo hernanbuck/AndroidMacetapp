@@ -88,6 +88,7 @@ class HomeFragment() : Fragment() {
                     is ViewModelState.UriPicSuccess -> {
                         if (state.uriPic != null) {
                             imgPlant.setImageURI(state.uriPic)
+
                         }
                     }
                     is ViewModelState.PlantSuccess -> {
