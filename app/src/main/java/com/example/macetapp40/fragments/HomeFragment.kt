@@ -14,6 +14,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Base64
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.macetapp40.Login
 import com.example.macetapp40.ShareDataViewModel
@@ -22,13 +23,13 @@ import kotlinx.android.synthetic.main.fragment_home.imgPlant
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import com.example.macetapp40.R
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_favourite.*
-import kotlinx.android.synthetic.main.fragment_home.tv_status
+import kotlinx.android.synthetic.main.fragment_home.tv_hHumidity
 
 private const val ARG_PARAM1 = "email"
 private const val ARG_PARAM2 = "plantName"
 private const val ARG_PARAM3 = "plantSensor"
 private const val ARG_PARAM4 = "userId"
+private const val ARG_PARAM5 = "userImage"
 
 class HomeFragment() : Fragment() {
 
@@ -37,6 +38,7 @@ class HomeFragment() : Fragment() {
     private var plantName: String? = null
     private var plantSensor: String? = null
     private var userId: String? = null
+    private var userImage: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +48,7 @@ class HomeFragment() : Fragment() {
             plantName = it.getString(ARG_PARAM2)
             plantSensor = it.getString(ARG_PARAM3)
             userId =  it.getString(ARG_PARAM4)
+            userImage =  FirebaseAuth.getInstance().currentUser?.photoUrl
         }
     }
 
@@ -53,7 +56,8 @@ class HomeFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (view.findViewById(R.id.emailTextView) as TextView).text = email
         (view.findViewById(R.id.tv_plantName) as TextView).text = plantName
-        (view.findViewById(R.id.tv_status) as TextView).text = plantSensor
+        (view.findViewById(R.id.tv_hHumidity) as TextView).text = plantSensor
+        imgPlant.setImageURI(userImage)
         logOutBtn.setOnClickListener {
             val prefs = activity?.getSharedPreferences(getString(com.example.macetapp40.R.string.prefs_file), Context.MODE_PRIVATE)
                 ?.edit()
@@ -89,13 +93,12 @@ class HomeFragment() : Fragment() {
                     is ViewModelState.UriPicSuccess -> {
                         if (state.uriPic != null) {
                             imgPlant.setImageURI(state.uriPic)
-
                         }
                     }
                     is ViewModelState.PlantSuccess -> {
                         emailTextView.text = email
                         tv_plantName.text = state.plant.name
-                        val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "")
+                        val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "").replace("data:image/jpg;base64," , "")
                         val img: Bitmap? = decodeBase64(cleanImage)
                         imgPlant.setImageBitmap(img)
                         if(!state.plant.code.isNotEmpty())
@@ -103,24 +106,26 @@ class HomeFragment() : Fragment() {
                             Toast.makeText(context, "No assigned plant yet! Please register your plant code", Toast.LENGTH_SHORT).show()
                         }
                         if (state.plant.humidity == null || state.plant.humidity == 0) {
-                            tv_humidity.text = "--"
+                            tv_hLastWatering.text = "--"
+                            Toast.makeText(context, "Go to Plant to register or update it.", Toast.LENGTH_SHORT).show()
+                            tv_hHumidity.text = "--"
                         } else {
-                            tv_humidity.text = state.plant.humidity.toString()
+                            tv_hLastWatering.text = state.plant.humidity.toString()
                         }
                         if (state.plant.date == null || state.plant.date == "") {
-                            tv_lastwatering.text = "   --   "
+                            tv_hWatering.text = "   --   "
                         } else {
                             val stringDate = state.plant.date
                             val splitDate = stringDate.split("T")
-                            tv_lastwatering.text = " " + splitDate[0] + " "
+                            tv_hWatering.text = " " + splitDate[0] + " "
                         }
                         if (state.plant.watering == "si") {
-                            tv_status.text = "Yes"
+                            tv_hHumidity.text = "Yes"
                         }
                         if (state.plant.watering == null) {
-                            tv_status.text = "--"
+                            tv_hHumidity.text = "--"
                         } else {
-                            tv_status.text = "No"
+                            tv_hHumidity.text = "No"
                         }
                     }
                     else -> {

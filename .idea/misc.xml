@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.22708333333333333" />
         <entry key="..\:/Users/YF668ED/AndroidStudioProjects/MacetApp40/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.2703125" />
         <entry key="..\:/Users/YF668ED/AndroidStudioProjects/MacetApp40/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.2703125" />
         <entry key="..\:/Users/YF668ED/AndroidStudioProjects/MacetApp40/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
@@ -15,11 +16,6 @@
         <entry key="..\:/Users/YF668ED/AndroidStudioProjects/MacetApp40/app/src/main/res/layout/fragment_settings.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/YF668ED/AndroidStudioProjects/MacetApp40/app/src/main/res/menu/nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/YF668ED/AndroidStudioProjects/MacetApp40/app/src/main/res/xml/network_security_config.xml" value="0.25416666666666665" />
-        <entry key="..\:/macetapp/web+api/AndroidMacetapp/app/src/main/res/layout/activity_login.xml" value="0.20625" />
-        <entry key="..\:/macetapp/web+api/AndroidMacetapp/app/src/main/res/layout/activity_main.xml" value="0.20625" />
-        <entry key="..\:/macetapp/web+api/AndroidMacetapp/app/src/main/res/layout/fragment_home.xml" value="0.20625" />
-        <entry key="..\:/macetapp/web+api/AndroidMacetapp/app/src/main/res/layout/fragment_settings.xml" value="0.20520833333333333" />
-        <entry key="..\:/macetapp/web+api/AndroidMacetapp/app/src/main/res/menu/nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/macetapp/web+api/MacetApp4.0/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.221875" />
         <entry key="..\:/macetapp/web+api/MacetApp4.0/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.3828125" />
         <entry key="..\:/macetapp/web+api/MacetApp4.0/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
@@ -31,10 +27,10 @@
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.275" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.275" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25885416666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.45936794582392776" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25885416666666666" />
-        <entry key="app/src/main/res/layout/fragment_favourite.xml" value="0.25885416666666666" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/layout/fragment_favourite.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.21197916666666666" />
       </map>
@@ -45,5 +41,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.5" />
+      </ProjectState>
+    </option>
   </component>
 </project>

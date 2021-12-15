@@ -6,11 +6,13 @@
         android:id="@+id/ic_home"
         android:icon="@drawable/user"
         android:title="User" />
+
     <item
         android:id="@+id/ic_favorites"
         android:icon="@drawable/ic_baseline_favorite_24"
         android:title="My Plants"
         android:visible="false" />
+
     <item
         android:id="@+id/ic_settings"
         android:icon="@drawable/plant"
