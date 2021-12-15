@@ -68,7 +68,7 @@ class SettingsFragment : Fragment() {
                 }else {
                     val plantCode = editTextPlantCode.text.toString()
                     val plantName = editTextName.text.toString()
-                    val plantTypeId = 2
+                    val plantTypeId = spinner2.selectedItemId.toInt()
                     val user = FirebaseAuth.getInstance().currentUser?.uid
                     val plantImgBit = imgFolder.drawable.toBitmap()
                     val plantImg = encodeImage(plantImgBit)
@@ -89,7 +89,7 @@ class SettingsFragment : Fragment() {
                 }else {
                     val plantCode = editTextPlantCode.text.toString()
                     val plantName = editTextName.text.toString()
-                    val plantTypeId = 3
+                    val plantTypeId = spinner2.selectedItemId.toInt()
                     val user = FirebaseAuth.getInstance().currentUser?.uid
                     val plantImgBit = imgFolder.drawable.toBitmap()
                     val plantImg = encodeImage(plantImgBit)
