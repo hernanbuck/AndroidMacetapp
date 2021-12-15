@@ -33,6 +33,7 @@ class SettingsFragment : Fragment() {
     private val shareDataViewModelViewModel : ShareDataViewModel by sharedViewModel()
     private var plantName: String? = null
     private var userId: String? = null
+    private var edit = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +54,7 @@ class SettingsFragment : Fragment() {
         }
 
         saveBtn.setOnClickListener {
-            if (editTextPlantCode.text != null) {
+            if (edit == 1) {
                 val plantCode = editTextPlantCode.text.toString()
                 val plantName = editTextName.text.toString()
                 val plantTypeId = 2
@@ -89,13 +90,19 @@ class SettingsFragment : Fragment() {
             state ->
             when (state) {
                 is ViewModelState.PlantSuccess -> {
-                    editTextName.setText(state.plant.name)
-                    editTextPlantCode.setText(state.plant.code)
-                    val myPlantImage = state.plant.image
-                    val myUri = Uri.parse(myPlantImage)
-                    val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "")
-                    val img: Bitmap? = decodeBase64(cleanImage)
-                    imgFolder.setImageBitmap(img)
+                    if (state.plant.code.isNotEmpty()) {
+                        editTextName.setText(state.plant.name)
+                        editTextPlantCode.setText(state.plant.code)
+                        val myPlantImage = state.plant.image
+                        val myUri = Uri.parse(myPlantImage)
+                        val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "")
+                        val img: Bitmap? = decodeBase64(cleanImage)
+                        imgFolder.setImageBitmap(img)
+                        edit = 1
+                    }
+
+
+
                 }
             }
         }

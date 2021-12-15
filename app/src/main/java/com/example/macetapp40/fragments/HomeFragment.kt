@@ -21,6 +21,7 @@ import com.example.macetapp40.ViewModelState
 import kotlinx.android.synthetic.main.fragment_home.imgPlant
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import com.example.macetapp40.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_favourite.*
 import kotlinx.android.synthetic.main.fragment_home.tv_status
 
@@ -41,7 +42,7 @@ class HomeFragment() : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            email = it.getString(ARG_PARAM1)
+            email = FirebaseAuth.getInstance().currentUser?.email
             plantName = it.getString(ARG_PARAM2)
             plantSensor = it.getString(ARG_PARAM3)
             userId =  it.getString(ARG_PARAM4)
