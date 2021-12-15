@@ -137,7 +137,7 @@
             android:textColor="#323232"
             android:textSize="16dp"
             android:translationX="-20sp"
-            android:translationY="80px" />
+            android:translationY="30dp" />
 
         <Button
             android:id="@+id/logOutBtn"
