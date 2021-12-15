@@ -26,6 +26,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.io.ByteArrayOutputStream
 import android.graphics.drawable.Drawable
 import androidx.core.graphics.drawable.toDrawable
+import okio.ByteString.Companion.toByteString
 import org.koin.experimental.property.inject
 import kotlin.math.PI
 
@@ -65,7 +66,10 @@ class SettingsFragment : Fragment() {
                 if(editTextPlantCode.length().equals(0) || editTextName.length().equals(0) || imgFolder.drawable == null)
                 {
                     Toast.makeText(context, "Modify the necessary data and press update", Toast.LENGTH_SHORT).show()
-                }else {
+                }else if (getSizeImg(imgFolder.drawable.toBitmap()) >= 1500000) {
+                    Toast.makeText(context, "The selected image is to long", Toast.LENGTH_SHORT).show()
+                }else
+                {
                     val plantCode = editTextPlantCode.text.toString()
                     val plantName = editTextName.text.toString()
                     val plantTypeId = spinner2.selectedItemId.toInt()
@@ -108,6 +112,13 @@ class SettingsFragment : Fragment() {
         userId?.let { shareDataViewModelViewModel.getPlantByUserId(it) }
 
     }
+    private fun getSizeImg(bm: Bitmap): Long {
+        val baos = ByteArrayOutputStream()
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val imageInByte: ByteArray = baos.toByteArray()
+        val lengthbmp = imageInByte.size.toLong()
+        return lengthbmp
+    }
 
     private fun encodeImage(bm: Bitmap): String? {
         val baos = ByteArrayOutputStream()
@@ -122,6 +133,7 @@ class SettingsFragment : Fragment() {
                 is ViewModelState.PlantSuccess -> {
                     if (state.plant.code.isNotEmpty()) {
                         code = state.plant.code
+                        spinner2.setSelection(state.plant.typeId)
                         editTextName.setText(state.plant.name)
                         editTextPlantCode.setText(state.plant.code)
                         val myPlantImage = state.plant.image
@@ -157,7 +169,13 @@ class SettingsFragment : Fragment() {
     }
     private fun openGallery() {
         val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        gallery.setType("image/*")
+        //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted..
+        val mimeTypes = arrayOf("image/jpeg" , "image/png")
+        gallery.putExtra(Intent.EXTRA_MIME_TYPES , mimeTypes)
         startActivityForResult(gallery, PICK_IMAGE)
+
+
 
     }
 
