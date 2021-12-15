@@ -24,6 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import com.example.macetapp40.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.tv_hHumidity
+import java.net.URL
 
 private const val ARG_PARAM1 = "email"
 private const val ARG_PARAM2 = "plantName"
@@ -44,6 +45,7 @@ class HomeFragment() : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
+            userImage = FirebaseAuth.getInstance().currentUser?.photoUrl
             email = FirebaseAuth.getInstance().currentUser?.email
             plantName = it.getString(ARG_PARAM2)
             plantSensor = it.getString(ARG_PARAM3)
@@ -54,6 +56,8 @@ class HomeFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (view.findViewById(R.id.imgUser) as ImageView).setImageURI(userImage)
         (view.findViewById(R.id.emailTextView) as TextView).text = email
         (view.findViewById(R.id.tv_plantName) as TextView).text = plantName
         (view.findViewById(R.id.tv_hHumidity) as TextView).text = plantSensor
