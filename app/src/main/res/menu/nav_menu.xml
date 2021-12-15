@@ -4,7 +4,11 @@
 
     <item
         android:id="@+id/ic_home"
+<<<<<<< HEAD
         android:icon="@drawable/ic_baseline_home_24"
+=======
+        android:icon="@drawable/user"
+>>>>>>> d7cfefd7740dcab65dccb5794c5cc110b1f152ba
         android:title="User" />
     <item
         android:id="@+id/ic_favorites"
@@ -13,7 +17,11 @@
         android:visible="false" />
     <item
         android:id="@+id/ic_settings"
+<<<<<<< HEAD
         android:icon="@android:drawable/ic_menu_edit"
+=======
+        android:icon="@drawable/plant"
+>>>>>>> d7cfefd7740dcab65dccb5794c5cc110b1f152ba
         android:title="Plant" />
 
 </menu>

@@ -61,7 +61,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="230dp"
-            android:layout_marginBottom="-490dp"
+            android:layout_marginBottom="-510dp"
             android:fontFamily="sans-serif-black"
             android:text="Plant code:"
             android:textColor="#323232"
@@ -103,7 +103,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="220dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="-500dp"
+            android:layout_marginBottom="-520dp"
             android:layout_toEndOf="@+id/tv_plantCode"
             android:ems="10"
             android:inputType="textVisiblePassword"
@@ -120,7 +120,7 @@
             android:layout_marginStart="200dp"
             android:layout_marginTop="530dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="70dp"
             android:text="Save" />
 
         <Spinner

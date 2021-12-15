@@ -152,7 +152,7 @@
             android:textColor="#323232"
             android:textSize="16dp"
             android:translationX="-20sp"
-            android:translationY="80px" />
+            android:translationY="30dp" />
 
         <Button
             android:id="@+id/logOutBtn"
@@ -173,8 +173,11 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+<<<<<<< HEAD
             android:layout_marginEnd="-200dp"
             android:layout_toStartOf="@+id/logOutBtn"
+=======
+>>>>>>> d7cfefd7740dcab65dccb5794c5cc110b1f152ba
             android:fontFamily="sans-serif-medium"
             android:textColor="#323232"
             android:textSize="16sp" />
