@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SettingsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgFolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/spinner2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="72dp"
+            android:layout_marginBottom="-100dp"
+            android:contentDescription="TODO" />
+
+        <TextView
+            android:id="@+id/tv_plantNameConf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_plantCode"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginBottom="-200dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Name:"
+            android:textColor="#323232"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/tv_plantType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_plantNameConf"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginBottom="-140dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Type:"
+            android:textColor="#323232"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/tv_plantCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/saveBtn"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="230dp"
+            android:layout_marginBottom="-490dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Plant code:"
+            android:textColor="#323232"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Select picture:"
+            android:textColor="#323232"
+            android:textSize="26sp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editTextPlantCode"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="-200dp"
+            android:layout_toEndOf="@+id/tv_plantNameConf"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="" />
+
+        <EditText
+            android:id="@+id/editTextPlantCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/saveBtn"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="-500dp"
+            android:layout_toEndOf="@+id/tv_plantCode"
+            android:ems="10"
+            android:inputType="textVisiblePassword"
+            android:minHeight="48dp"
+            android:text="" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="530dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="40dp"
+            android:text="Save" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editTextName"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="-140dp"
+            android:layout_toEndOf="@+id/tv_plantType" />
+
+    </RelativeLayout>
+
+</FrameLayout>
