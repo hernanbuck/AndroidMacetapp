@@ -1,6 +1,7 @@
 package com.example.macetapp40.fragments
 
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 
@@ -23,6 +24,11 @@ import com.example.macetapp40.model.Post
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.io.ByteArrayOutputStream
+import android.graphics.drawable.Drawable
+import androidx.core.graphics.drawable.toDrawable
+import org.koin.experimental.property.inject
+import kotlin.math.PI
+
 
 private const val ARG_PARAM1 = "plantName"
 private const val ARG_PARAM3 = "userId"
@@ -34,7 +40,8 @@ class SettingsFragment : Fragment() {
     private var plantName: String? = null
     private var userId: String? = null
     private var edit = 0
-
+    private var code: String = ""
+    private var oldDraw: String =""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -55,23 +62,45 @@ class SettingsFragment : Fragment() {
 
         saveBtn.setOnClickListener {
             if (edit == 1) {
-                val plantCode = editTextPlantCode.text.toString()
-                val plantName = editTextName.text.toString()
-                val plantTypeId = 2
-                val user = FirebaseAuth.getInstance().currentUser?.uid
-                val plantImgBit = imgFolder.drawable.toBitmap()
-                val plantImg = encodeImage(plantImgBit)
-                val myPost = Post(plantCode, plantName, plantTypeId, user, plantImg)
-                shareDataViewModelViewModel.setModifyPlant(myPost)
+                if(editTextPlantCode.length().equals(0) || editTextName.length().equals(0) || imgFolder.drawable == null)
+                {
+                    Toast.makeText(context, "Modify the necessary data and press update", Toast.LENGTH_SHORT).show()
+                }else {
+                    val plantCode = editTextPlantCode.text.toString()
+                    val plantName = editTextName.text.toString()
+                    val plantTypeId = 2
+                    val user = FirebaseAuth.getInstance().currentUser?.uid
+                    val plantImgBit = imgFolder.drawable.toBitmap()
+                    val plantImg = encodeImage(plantImgBit)
+                    val myPost = Post(plantCode , code , plantName , plantTypeId , user , plantImg)
+                    shareDataViewModelViewModel.setModifyPlant(myPost)
+                    Toast.makeText(
+                            context ,
+                            "Plant successfully updated." ,
+                            Toast.LENGTH_SHORT
+                                  ).show()
+                }
+
             } else {
-                val plantCode = editTextPlantCode.text.toString()
-                val plantName = editTextName.text.toString()
-                val plantTypeId = 3
-                val user = FirebaseAuth.getInstance().currentUser?.uid
-                val plantImgBit = imgFolder.drawable.toBitmap()
-                val plantImg = encodeImage(plantImgBit)
-                val myPost = Post(plantCode, plantName, plantTypeId, user, plantImg)
-                shareDataViewModelViewModel.setNewPlant(myPost)
+
+                if(editTextPlantCode.length().equals(0) || editTextName.length().equals(0) || imgFolder.drawable.toString().equals(oldDraw))
+                {
+                    Toast.makeText(context, "Fill the form and press add", Toast.LENGTH_SHORT).show()
+                }else {
+                    val plantCode = editTextPlantCode.text.toString()
+                    val plantName = editTextName.text.toString()
+                    val plantTypeId = 3
+                    val user = FirebaseAuth.getInstance().currentUser?.uid
+                    val plantImgBit = imgFolder.drawable.toBitmap()
+                    val plantImg = encodeImage(plantImgBit)
+                    val myPost = Post(plantCode , code , plantName , plantTypeId , user , plantImg)
+                    shareDataViewModelViewModel.setNewPlant(myPost)
+                    Toast.makeText(
+                            context ,
+                            "Plant successfully create." ,
+                            Toast.LENGTH_SHORT
+                                  ).show()
+                }
             }
         }
 
@@ -79,6 +108,7 @@ class SettingsFragment : Fragment() {
         userId?.let { shareDataViewModelViewModel.getPlantByUserId(it) }
 
     }
+
     private fun encodeImage(bm: Bitmap): String? {
         val baos = ByteArrayOutputStream()
         bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)
@@ -91,6 +121,7 @@ class SettingsFragment : Fragment() {
             when (state) {
                 is ViewModelState.PlantSuccess -> {
                     if (state.plant.code.isNotEmpty()) {
+                        code = state.plant.code
                         editTextName.setText(state.plant.name)
                         editTextPlantCode.setText(state.plant.code)
                         val myPlantImage = state.plant.image
@@ -99,6 +130,14 @@ class SettingsFragment : Fragment() {
                         val img: Bitmap? = decodeBase64(cleanImage)
                         imgFolder.setImageBitmap(img)
                         edit = 1
+                    }else
+                    {
+                        imgFolder.setImageResource(R.drawable.addimg)
+
+                        oldDraw = imgFolder.drawable.toString()
+                        editTextName.setText("")
+                        editTextPlantCode.setText("")
+                        edit = 0
                     }
 
 
@@ -119,6 +158,7 @@ class SettingsFragment : Fragment() {
     private fun openGallery() {
         val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
         startActivityForResult(gallery, PICK_IMAGE)
+
     }
 
 

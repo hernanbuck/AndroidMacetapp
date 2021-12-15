@@ -27,6 +27,7 @@ data class Plant (
     @SerialName("PlantCode")
     val code: String = "",
 
+
     @SerialName("PlantTypeId")
     val typeId: Int = 0
 

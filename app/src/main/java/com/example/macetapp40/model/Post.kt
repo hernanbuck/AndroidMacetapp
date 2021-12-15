@@ -9,6 +9,9 @@ data class Post(
     @SerialName("plantCode")
     val plantCode: String? = "" ,
 
+    @SerialName("plantCodeAnt")
+    val codeAnt: String = "",
+
     @SerialName("plantName")
     val planName: String? = "" ,
 
