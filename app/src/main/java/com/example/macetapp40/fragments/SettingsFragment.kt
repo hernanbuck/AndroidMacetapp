@@ -148,7 +148,7 @@ class SettingsFragment : Fragment() {
                     }else
                     {
                         imgFolder.setImageResource(R.drawable.addimg)
-
+                        spinner2.setSelection(1)
                         oldDraw = imgFolder.drawable.toString()
                         editTextName.setText("")
                         editTextPlantCode.setText("")
