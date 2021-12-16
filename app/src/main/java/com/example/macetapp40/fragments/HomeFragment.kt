@@ -111,6 +111,7 @@ class HomeFragment() : Fragment() {
                         imgPlant.setImageBitmap(img)
                         if(!state.plant.code.isNotEmpty())
                         {
+                            imgPlant.setImageResource(R.drawable.notimage)
                             Toast.makeText(context, "No assigned plant yet! Please register your plant code", Toast.LENGTH_SHORT).show()
                         }
                         if (state.plant.humidity == null || state.plant.humidity == 0) {

@@ -76,7 +76,8 @@ class SettingsFragment : Fragment() {
                     val user = FirebaseAuth.getInstance().currentUser?.uid
                     val plantImgBit = imgFolder.drawable.toBitmap()
                     val plantImg = encodeImage(plantImgBit)
-                    val myPost = Post(plantCode , code , plantName , plantTypeId , user , plantImg)
+                    val planImgComplete = "data:image/png;base64," + plantImg
+                    val myPost = Post(plantCode , code , plantName , plantTypeId , user , planImgComplete)
                     shareDataViewModelViewModel.setModifyPlant(myPost)
                     Toast.makeText(
                             context ,
@@ -100,7 +101,8 @@ class SettingsFragment : Fragment() {
                     val user = FirebaseAuth.getInstance().currentUser?.uid
                     val plantImgBit = imgFolder.drawable.toBitmap()
                     val plantImg = encodeImage(plantImgBit)
-                    val myPost = Post(plantCode , code , plantName , plantTypeId , user , plantImg)
+                    val planImgComplete = "data:image/png;base64," + plantImg
+                    val myPost = Post(plantCode , code , plantName , plantTypeId , user , planImgComplete)
                     shareDataViewModelViewModel.setNewPlant(myPost)
                     Toast.makeText(
                             context ,
