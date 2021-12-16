@@ -72,7 +72,7 @@ class SettingsFragment : Fragment() {
                 {
                     val plantCode = editTextPlantCode.text.toString()
                     val plantName = editTextName.text.toString()
-                    val plantTypeId = spinner2.selectedItemId.toInt()
+                    val plantTypeId = spinner2.selectedItemId.toInt()+1
                     val user = FirebaseAuth.getInstance().currentUser?.uid
                     val plantImgBit = imgFolder.drawable.toBitmap()
                     val plantImg = encodeImage(plantImgBit)
@@ -96,7 +96,7 @@ class SettingsFragment : Fragment() {
                 {
                     val plantCode = editTextPlantCode.text.toString()
                     val plantName = editTextName.text.toString()
-                    val plantTypeId = spinner2.selectedItemId.toInt()
+                    val plantTypeId = spinner2.selectedItemId.toInt()+1
                     val user = FirebaseAuth.getInstance().currentUser?.uid
                     val plantImgBit = imgFolder.drawable.toBitmap()
                     val plantImg = encodeImage(plantImgBit)
@@ -136,7 +136,7 @@ class SettingsFragment : Fragment() {
                 is ViewModelState.PlantSuccess -> {
                     if (state.plant.code.isNotEmpty()) {
                         code = state.plant.code
-                        spinner2.setSelection(state.plant.typeId)
+                        spinner2.setSelection(state.plant.typeId - 1)
                         editTextName.setText(state.plant.name)
                         editTextPlantCode.setText(state.plant.code)
                         val myPlantImage = state.plant.image
@@ -148,7 +148,7 @@ class SettingsFragment : Fragment() {
                     }else
                     {
                         imgFolder.setImageResource(R.drawable.addimg)
-                        spinner2.setSelection(1)
+                        spinner2.setSelection(0)
                         oldDraw = imgFolder.drawable.toString()
                         editTextName.setText("")
                         editTextPlantCode.setText("")
