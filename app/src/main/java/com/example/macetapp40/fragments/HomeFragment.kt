@@ -115,26 +115,26 @@ class HomeFragment() : Fragment() {
                             Toast.makeText(context, "No assigned plant yet! Please register your plant code", Toast.LENGTH_SHORT).show()
                         }
                         if (state.plant.humidity == null || state.plant.humidity == 0) {
-                            tv_hLastWatering.text = "--"
-                           // Toast.makeText(context, "Go to Plant to register or update it.", Toast.LENGTH_SHORT).show()
                             tv_hHumidity.text = "--"
+                           // Toast.makeText(context, "Go to Plant to register or update it.", Toast.LENGTH_SHORT).show()
+                            tv_hLastWatering.text = "--"
                         } else {
-                            tv_hLastWatering.text = state.plant.humidity.toString()
+                            tv_hHumidity.text = state.plant.humidity.toString()
                         }
                         if (state.plant.date == null || state.plant.date == "") {
-                            tv_hWatering.text = "   --   "
+                            tv_hLastWatering.text = "   --   "
                         } else {
                             val stringDate = state.plant.date
                             val splitDate = stringDate.split("T")
-                            tv_hWatering.text = " " + splitDate[0] + " "
+                            tv_hLastWatering.text = " " + splitDate[0] + " "
                         }
                         if (state.plant.watering == "si") {
-                            tv_hHumidity.text = "Yes"
+                            tv_hWatering.text = "Yes"
                         }
                         if (state.plant.watering == null) {
-                            tv_hHumidity.text = "--"
+                            tv_hWatering.text = "--"
                         } else {
-                            tv_hHumidity.text = "No"
+                            tv_hWatering.text = "No"
                         }
                     }
                     else -> {

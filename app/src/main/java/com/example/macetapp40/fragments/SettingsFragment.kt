@@ -66,7 +66,7 @@ class SettingsFragment : Fragment() {
                 if(editTextPlantCode.length().equals(0) || editTextName.length().equals(0) || imgFolder.drawable == null)
                 {
                     Toast.makeText(context, "Modify the necessary data and press update", Toast.LENGTH_SHORT).show()
-                }else if (getSizeImg(imgFolder.drawable.toBitmap()) >= 1500000) {
+                }else if (getSizeImg(imgFolder.drawable.toBitmap()) >= 1200000) {
                     Toast.makeText(context, "The selected image is to long", Toast.LENGTH_SHORT).show()
                 }else
                 {
@@ -91,7 +91,7 @@ class SettingsFragment : Fragment() {
                 if(editTextPlantCode.length().equals(0) || editTextName.length().equals(0) || imgFolder.drawable.toString().equals(oldDraw))
                 {
                     Toast.makeText(context, "Fill the form and press add", Toast.LENGTH_SHORT).show()
-                }else if (getSizeImg(imgFolder.drawable.toBitmap()) >= 1500000) {
+                }else if (getSizeImg(imgFolder.drawable.toBitmap()) >= 1200000) {
                     Toast.makeText(context, "The selected image is to long", Toast.LENGTH_SHORT).show()
                 }else
                 {
