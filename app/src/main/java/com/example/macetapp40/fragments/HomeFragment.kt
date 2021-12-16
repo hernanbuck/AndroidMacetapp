@@ -23,8 +23,8 @@ import kotlinx.android.synthetic.main.fragment_home.imgPlant
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import com.example.macetapp40.R
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_home.tv_hHumidity
-import java.net.URL
 
 private const val ARG_PARAM1 = "email"
 private const val ARG_PARAM2 = "plantName"
@@ -36,6 +36,7 @@ class HomeFragment() : Fragment() {
 
     private val shareDataViewModelViewModel : ShareDataViewModel by sharedViewModel()
     private var email: String? = null
+    private var userName: String? = null
     private var plantName: String? = null
     private var plantSensor: String? = null
     private var userId: String? = null
@@ -47,6 +48,7 @@ class HomeFragment() : Fragment() {
         arguments?.let {
             userImage = FirebaseAuth.getInstance().currentUser?.photoUrl
             email = FirebaseAuth.getInstance().currentUser?.email
+            userName = it.getString(ARG_PARAM1)
             plantName = it.getString(ARG_PARAM2)
             plantSensor = it.getString(ARG_PARAM3)
             userId =  it.getString(ARG_PARAM4)
@@ -56,9 +58,10 @@ class HomeFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        (view.findViewById(R.id.imgUser) as ImageView).setImageURI(userImage)
+        Picasso.get().load(FirebaseAuth.getInstance().currentUser?.photoUrl).into((view.findViewById(R.id.imgUser) as ImageView))
+     //   (view.findViewById(R.id.imgUser) as ImageView).setImageURI(userImage)
         (view.findViewById(R.id.emailTextView) as TextView).text = email
+        (view.findViewById(R.id.nameTextView) as TextView).text = userName
         (view.findViewById(R.id.tv_plantName) as TextView).text = plantName
         (view.findViewById(R.id.tv_hHumidity) as TextView).text = plantSensor
         imgPlant.setImageURI(userImage)
@@ -100,6 +103,7 @@ class HomeFragment() : Fragment() {
                         }
                     }
                     is ViewModelState.PlantSuccess -> {
+                        nameTextView.text = userName
                         emailTextView.text = email
                         tv_plantName.text = state.plant.name
                         val cleanImage: String = state.plant.image.replace("data:image/png;base64," , "").replace("data:image/jpeg;base64," , "").replace("data:image/jpg;base64," , "")
@@ -111,7 +115,7 @@ class HomeFragment() : Fragment() {
                         }
                         if (state.plant.humidity == null || state.plant.humidity == 0) {
                             tv_hLastWatering.text = "--"
-                            Toast.makeText(context, "Go to Plant to register or update it.", Toast.LENGTH_SHORT).show()
+                           // Toast.makeText(context, "Go to Plant to register or update it.", Toast.LENGTH_SHORT).show()
                             tv_hHumidity.text = "--"
                         } else {
                             tv_hLastWatering.text = state.plant.humidity.toString()

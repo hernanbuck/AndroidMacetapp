@@ -31,14 +31,12 @@
             android:id="@+id/imgUser"
             android:layout_width="wrap_content"
             android:layout_height="88dp"
-            android:layout_above="@+id/imgPlant"
-            android:layout_below="@+id/logOutBtn"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="-2dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="278dp"
-            android:layout_marginBottom="-87dp"
             android:contentDescription="TODO"
             app:srcCompat="@android:drawable/ic_menu_gallery" />
 
@@ -167,19 +165,28 @@
 
 
         <TextView
-            android:id="@+id/emailTextView"
-            android:layout_width="234dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/imgUser"
+            android:id="@+id/nameTextView"
+            android:layout_width="300dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/imgUser"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="-250dp"
-            android:layout_marginBottom="9dp"
-            android:layout_toStartOf="@+id/logOutBtn"
-            android:text="TextView"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="sans-serif-medium"
+            android:text="TextView"
+            android:textColor="#323232"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/emailTextView"
+            android:layout_width="300dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/nameTextView"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="TextView"
             android:textColor="#323232"
             android:textSize="16sp" />
 
